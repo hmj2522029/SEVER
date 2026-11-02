@@ -7,10 +7,6 @@
 // ・戻り終わったかどうかを判定する
 // ・戻る処理の開始・停止を管理する
 
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using UnityEditor.Purchasing;
 using UnityEngine;
 
 public class Return : MonoBehaviour

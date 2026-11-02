@@ -7,10 +7,7 @@
 //・移動の開始と停止
 //・Rigidbody2Dを使用した移動処理
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
 
 public class Movement : MonoBehaviour
 {

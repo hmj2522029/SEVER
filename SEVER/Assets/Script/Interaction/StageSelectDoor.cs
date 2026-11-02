@@ -13,6 +13,8 @@ public class StageSelectDoor : DoorBase
     [SerializeField] int m_requiredStageID;     //入るために必要なクリアステージのID
     [SerializeField] AudioClip m_doorOpenSE;    //ドアを開ける音
 
+   
+
     public int StageID => m_stageID;
 
     public string SceneName => m_sceneName;
@@ -25,12 +27,25 @@ public class StageSelectDoor : DoorBase
 
     public override string Message => "「F」 入る";       //表示するメッセージ
 
+    private bool m_isLocked; //ドアがロックされているかどうか
 
-	public override void Interaction()
+    public override void Interaction()
 	{
+
+        if (m_isLocked) return;
 
         AudioManager.Instance.PlaySE(m_doorOpenSE, 0.5f);
 
+    }
+
+    public void LockDoor()
+    {
+        m_isLocked = true;
+    }
+
+    public void UnlockDoor()
+    {
+        m_isLocked = false;
     }
 
 }

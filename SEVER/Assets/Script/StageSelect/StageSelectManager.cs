@@ -81,10 +81,14 @@ public class StageSelectManager : MonoBehaviour
         {
             if (m_isMessageWindowDisplayed) return; //メッセージウィンドウが表示されている場合は何もしない
 
+            stageDoor.LockDoor(); //ドアをロックする
+
             m_isMessageWindowDisplayed = true;      //メッセージウィンドウが表示されている状態にする
             StartCoroutine(MessageWindowDisplay()); //メッセージを表示
             return;
         }
+
+        stageDoor.UnlockDoor(); //ドアをアンロックする
 
         EnterStage(stageDoor);
     }

@@ -13,9 +13,10 @@ public abstract class DoorBase : MonoBehaviour
     //実際のドアの操作
     public void ExecuteInteraction()
     {
-        Interaction();
 
         OnInteraction?.Invoke(this);
+
+        Interaction();
     }
 
     //継承先で実装

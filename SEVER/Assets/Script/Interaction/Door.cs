@@ -6,10 +6,6 @@
 //・ドアの開閉状態に応じて、ドアオブジェクトの表示を切り替える
 //・ドアの開閉状態に応じて、表示するメッセージを切り替える
 
-using System.Collections;
-using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door : DoorBase
