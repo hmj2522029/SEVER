@@ -28,7 +28,6 @@ public class ThreadCutterEvent : MonoBehaviour
         }
     }
 
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         ThreadConnection thread = collision.GetComponent<ThreadConnection>();
@@ -38,6 +37,5 @@ public class ThreadCutterEvent : MonoBehaviour
         {
             m_currentThread = null;
         }
-
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine.Windows;
 
 public class EnemyEventController : MonoBehaviour
 {
-
     private Movement m_movement;        //移動
     private ThreadConnection m_thread;	//糸(接続しているコアとの糸)
     private AlertIcon m_alertIcon;      //警告アイコン
@@ -46,6 +45,4 @@ public class EnemyEventController : MonoBehaviour
     {
         m_thread.OnThreadBroken -= OnThreadBroken;
     }
-
-
 }

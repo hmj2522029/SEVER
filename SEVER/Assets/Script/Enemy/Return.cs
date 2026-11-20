@@ -38,7 +38,6 @@ public class Return : MonoBehaviour
         m_pathRecorder.StopRecording();
 
         m_waitTime = WaitTime;  //移動前の待機時間を初期化
-
     }
 
     private void Update()
@@ -76,7 +75,6 @@ public class Return : MonoBehaviour
 
     private void UpdateStart()
     {
-
         if (m_pathRecorder.Path.Count == 0) return;
 
         m_isUpdate = true;
@@ -87,7 +85,6 @@ public class Return : MonoBehaviour
 
         //次の目標の位置を設定する
         m_target = m_pathRecorder.Path[m_pathIndex];
-
     }
 
     public void UpdateStop()
@@ -104,13 +101,11 @@ public class Return : MonoBehaviour
 
         m_isReturnEnd = false;
     }
+
     public void BeginReturn()
     {
-
         //通った道の記録を停止する(戻った道を記録させないため)
         m_pathRecorder.StopRecording();
         UpdateStart();
-
     }
-
 }

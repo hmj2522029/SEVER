@@ -11,15 +11,12 @@ public class ClearManager : MonoBehaviour
     [SerializeField] EventDirector m_eventDirector;    //イベント開始
     [SerializeField] GameEvent m_gameEvent;            //どのイベントか 
 
-
     [Header("フェード等")]
     [SerializeField] CanvasGroupFade m_fade;        //フェード
     [SerializeField] CanvasGroup m_image;           //画面のフェード用の画像
 
-
     private void Start()
     {
-
         m_eventDirector.StartEvent(m_gameEvent);
 
         m_fade.FadeOut(m_image, 2f);
@@ -39,7 +36,5 @@ public class ClearManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("TitleScene");
-
     }
-
 }

@@ -13,13 +13,18 @@ public abstract class DoorBase : MonoBehaviour
     //実際のドアの操作
     public void ExecuteInteraction()
     {
+        if (!CanInteract()) return;
 
         OnInteraction?.Invoke(this);
 
         Interaction();
     }
 
+    protected virtual bool CanInteract()
+    {
+        return true;
+    }
+
     //継承先で実装
     public abstract void Interaction();
-
 }

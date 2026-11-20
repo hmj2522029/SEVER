@@ -11,7 +11,6 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-
     private Vector2 m_move;             //移動量
     private Vector2 m_startPosition;    //開始地点
     private float m_moveDistance;       //指定距離
@@ -19,7 +18,6 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-
         if (m_distanceMove)
         {
             float distance =
@@ -33,19 +31,16 @@ public class CameraMovement : MonoBehaviour
 
             transform.position += (Vector3)m_move * Time.deltaTime;
         }
-
     }
 
     //入力を指定する用のMove関数
     public void Move(Vector2 direction, float distance, float speed)
     {
-
         m_startPosition = transform.position;
         m_moveDistance = distance;
         m_distanceMove = true;
 
         m_move = direction * speed;
-
     }
 
     private void Stop()
@@ -53,5 +48,4 @@ public class CameraMovement : MonoBehaviour
         m_move = Vector2.zero;
         m_distanceMove = false;
     }
-
 }

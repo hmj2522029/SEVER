@@ -11,10 +11,8 @@ using UnityEngine;
 
 public abstract class ThreadVisibility : MonoBehaviour
 {
-
     protected ThreadConnection m_threadConnection;
     protected LineRenderer m_lineRenderer;
-
 
     protected virtual void Awake()
     {
@@ -25,15 +23,11 @@ public abstract class ThreadVisibility : MonoBehaviour
     protected virtual void Start()
     {
 
-        //糸の太さを設定
-        //m_lineRenderer.startWidth = 1.0f;
-       // m_lineRenderer.endWidth = 1.0f;
 
     }
 
     protected virtual void Update()
     {
-
         if (m_threadConnection.IsBroken)
         {
             m_lineRenderer.enabled = false;
@@ -41,7 +35,6 @@ public abstract class ThreadVisibility : MonoBehaviour
         }
 
         UpdateVisibility();
-
     }
 
     protected abstract void UpdateVisibility();
@@ -50,7 +43,4 @@ public abstract class ThreadVisibility : MonoBehaviour
     {
         m_lineRenderer.SetPosition(index, pos);
     }
-
-    
-
 }

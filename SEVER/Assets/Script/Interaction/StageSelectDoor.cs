@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class StageSelectDoor : DoorBase
 {
-
 	[SerializeField] int m_stageID;             //ステージのID
     [SerializeField] string m_sceneName;        //ステージのシーン名
     [SerializeField] Transform m_returnPoint;   //ステージから出た時の場所
@@ -13,29 +13,27 @@ public class StageSelectDoor : DoorBase
     [SerializeField] int m_requiredStageID;     //入るために必要なクリアステージのID
     [SerializeField] AudioClip m_doorOpenSE;    //ドアを開ける音
 
-   
-
     public int StageID => m_stageID;
-
     public string SceneName => m_sceneName;
-
     public Transform ReturnPoint => m_returnPoint;
-
     public Vector2 ReturnDirection => m_returnDirection;
-
     public int RequiredStageID => m_requiredStageID;
-
     public override string Message => "「F」 入る";       //表示するメッセージ
 
-    private bool m_isLocked; //ドアがロックされているかどうか
+    private bool m_isLocked;            //ドアがロックされているかどうか
+    private bool m_isEnter = false;     //ドアに入ったかどうか
 
     public override void Interaction()
 	{
+        if(m_isLocked) return;
 
-        if (m_isLocked) return;
-
+        m_isEnter = true;
         AudioManager.Instance.PlaySE(m_doorOpenSE, 0.5f);
+    }
 
+    protected override bool CanInteract()
+    {
+        return !m_isLocked && !m_isEnter;
     }
 
     public void LockDoor()
@@ -47,5 +45,4 @@ public class StageSelectDoor : DoorBase
     {
         m_isLocked = false;
     }
-
 }

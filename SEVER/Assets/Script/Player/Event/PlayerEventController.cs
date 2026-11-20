@@ -16,7 +16,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerEventController : MonoBehaviour
 {
-
     private PlayerAnimation m_playerAnimation;  //プレイヤーアニメーション
     private Movement m_movement;                //移動
     private Vision m_vision;                    //視野
@@ -34,7 +33,6 @@ public class PlayerEventController : MonoBehaviour
         m_alertIcon = GetComponentInChildren<AlertIcon>();
         m_vision = GetComponentInChildren<Vision>();
         m_threadCutter = GetComponentInChildren<ThreadCutterEvent>();
-
     }
 
     private void Update()
@@ -44,7 +42,6 @@ public class PlayerEventController : MonoBehaviour
 
         //視野
         m_vision.SetDirection(m_playerAnimation.GetFacingDirection());
-
     }
 
     public void Move(Vector2 direction, float distance, float speed)
@@ -88,6 +85,4 @@ public class PlayerEventController : MonoBehaviour
     {
         m_teleport.MoveTo(position);
     }
-
-   
 }

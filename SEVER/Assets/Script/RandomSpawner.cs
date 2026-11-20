@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RandomSpawner : MonoBehaviour
 {
-
     [SerializeField] Transform m_spawnPoints;       //生成する位置の親オブジェクト
     [SerializeField] GameObject m_spawnPrefab;      //生成するPrefab
 
@@ -14,7 +13,6 @@ public class RandomSpawner : MonoBehaviour
 
     public void Spawn()
     {
-
         //子オブジェクトの数を取得
         int count = m_spawnPoints.childCount;
 
@@ -30,8 +28,5 @@ public class RandomSpawner : MonoBehaviour
             spawnPoint.position,
             Quaternion.identity
         );
-        
-
     }
-
 }

@@ -34,17 +34,14 @@ public class Vision : MonoBehaviour
     private float m_targetAngle;            //視野の向き(ターゲットの角度)
     private float m_rotateSpeed = 500.0f;   //視野の回転速度
 
-
     public IReadOnlyList<RaycastHit2D> Hits => m_hits;
 
     public Vector2 Dir => m_direction;
-
 
 	private void Awake()
 	{
 		m_mesh = new Mesh();
 		m_mesh.name = "VisionMesh";
-
         m_meshRenderer = GetComponent<MeshRenderer>();
     }
 
@@ -60,7 +57,6 @@ public class Vision : MonoBehaviour
 
 		m_hits = new List<RaycastHit2D>();
 
-
 		//m_trianglesは一度作れば変わらないから最初で作成
 		for (int i = 0; i < m_division; i++)
 		{
@@ -71,7 +67,6 @@ public class Vision : MonoBehaviour
 			m_triangles[index + 1] = i + 2;     //現在の頂点 
 			m_triangles[index + 2] = i + 1;     //次の頂点
 		}
-
 	}
 
     void Update()
@@ -90,7 +85,6 @@ public class Vision : MonoBehaviour
             Mathf.Cos(rad),
             Mathf.Sin(rad)
         );
-
     }
 
     public void SetDirection(Vector2 direction)
@@ -132,7 +126,6 @@ public class Vision : MonoBehaviour
 			//障害物に当たったかどうか
 			if (hit.collider != null && IsLayer(hit.collider.gameObject, m_obstacleLayer))
 			{
-				
 				//障害物に当たった所を頂点として保存
 				m_vertices[i] = transform.InverseTransformPoint(hit.point);
 
@@ -142,11 +135,9 @@ public class Vision : MonoBehaviour
 					hit.point,
 					Color.green
 				);
-			
 			}
 			else　
 			{
-
 				//障害物が無いので最大視野距離の位置を頂点として保存
 				m_vertices[i] = new Vector3(
                     dir.x * m_viewDistance,
@@ -163,7 +154,6 @@ public class Vision : MonoBehaviour
 				//ターゲットが視野内に入ったかどうか
 				if(hit.collider != null && IsLayer(hit.collider.gameObject, m_targetLayer))
 				{
-
                     //ターゲットが視野内に入ったので保存
                     m_hits.Add(hit);
 
@@ -173,14 +163,9 @@ public class Vision : MonoBehaviour
 						hit.point,
 						Color.blue
 					);
-
-
 				}
-
 			}
-
 		}
-
 		m_mesh.Clear();
 
 		m_mesh.vertices = m_vertices;
@@ -188,7 +173,6 @@ public class Vision : MonoBehaviour
 
 		m_mesh.RecalculateBounds();     //Meshの範囲更新
 		m_mesh.RecalculateNormals();
-
 	}
 
 	private bool IsLayer(GameObject obj, LayerMask mask)
@@ -238,12 +222,10 @@ public class Vision : MonoBehaviour
         if (hit.collider != null) return false;
 
         return true;
-
     }
 
     public Vector2 Direction()
     {
         return m_direction;
     }
-
 }

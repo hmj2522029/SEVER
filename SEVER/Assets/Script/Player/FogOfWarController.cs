@@ -12,23 +12,20 @@ using UnityEngine;
 
 public class FogOfWarController : MonoBehaviour
 {
-
     [SerializeField] Material m_fogMaterial;
+
     private void Update()
     {
         Vector3 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
 
         Vector2 normalizedPosition = new Vector2(
-            viewportPosition.x ,
+            viewportPosition.x,
             viewportPosition.y 
         );
-
 
         m_fogMaterial.SetVector("_PlayerPosition", normalizedPosition);
 
         float aspect = (float)Screen.width / Screen.height;
         m_fogMaterial.SetFloat("_Aspect", aspect);
     }
-
-
 }

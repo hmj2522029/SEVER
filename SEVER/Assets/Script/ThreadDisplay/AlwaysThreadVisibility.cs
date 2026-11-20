@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class AlwaysThreadVisibility : ThreadVisibility
 {
-
     protected override void UpdateVisibility()
     {
         var points = m_threadConnection.Points; //糸の分岐点
@@ -30,7 +29,5 @@ public class AlwaysThreadVisibility : ThreadVisibility
         {
             DrawPoint(i, points[i]);
         }
-
     }
-
 }

@@ -46,5 +46,4 @@ public class BounceAnimation : MonoBehaviour
 
         m_target.position = m_startPosition + Vector3.up * y;
     }
-
 }

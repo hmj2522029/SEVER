@@ -18,11 +18,13 @@ public class StageManager : MonoBehaviour
     [Header("ランダムスポーン(ダンジョンコア)")]
     [SerializeField] RandomSpawner m_randomSpawner; //ランダムスポーン
 
+    [Header("プレイヤー情報")]
+    [SerializeField] Movement m_movementPlayer; //プレイヤーの移動スクリプト
+
     private DungeonCore m_dungeonCore;     //ダンジョンコア
 
     private void Start()
     {
-
         m_fade.FadeOut(m_image, 2.0f);
 
         m_randomSpawner.Spawn();    //ダンジョンコアをランダムにスポーン
@@ -49,7 +51,6 @@ public class StageManager : MonoBehaviour
 
         if (stageDoor == null) return;
 
-
         //ダンジョンコアが壊れているかどうかを確認
         if (m_dungeonCore.IsDestroyed)
         {
@@ -63,7 +64,8 @@ public class StageManager : MonoBehaviour
 
     private void ExitStage()
     {
-        m_fade.FadeIn(m_image, 3.0f);
+        m_fade.FadeIn(m_image, 2.0f);
+        m_movementPlayer.SetMoveEnabled(false);   //プレイヤーの移動を無効化
 
         StartCoroutine(LoadStageSelect());
     }
@@ -79,5 +81,4 @@ public class StageManager : MonoBehaviour
 
         SceneManager.LoadScene("StageSelectScene");
     }
-
 }

@@ -16,7 +16,6 @@ public class Torch : MonoBehaviour
 
     private Animator m_torch;
 
-
     private void Awake()
     {
         m_torch = GetComponent<Animator>();
@@ -54,5 +53,4 @@ public class Torch : MonoBehaviour
             m_torch.SetBool("isIgnition", false);
         }
     }
-
 }

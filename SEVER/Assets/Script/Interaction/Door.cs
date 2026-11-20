@@ -19,12 +19,10 @@ public class Door : DoorBase
 
 	public override string Message => m_isOpen ? "「F」 閉じる" : "「F」 開ける";      //表示するメッセージ
 
-
     public override void Interaction()
 	{
 		Toggle();
 	}
-	
 
     public void Open(bool sound = true)
 	{
@@ -40,7 +38,6 @@ public class Door : DoorBase
             //ドアを開ける音を鳴らす
             AudioManager.Instance.PlaySE(m_open);  
         }
-
     }
 
 	public void Close(bool sound = true)
@@ -56,14 +53,11 @@ public class Door : DoorBase
         {
             //ドアを閉める音を鳴らす
             AudioManager.Instance.PlaySE(m_open);
-
         }
-
     }
 
 	public void Toggle()
 	{
-
 		if(m_isOpen)
 		{
 			Close();
@@ -72,7 +66,5 @@ public class Door : DoorBase
 		{
 			Open();
 		}
-
 	}
-
 }

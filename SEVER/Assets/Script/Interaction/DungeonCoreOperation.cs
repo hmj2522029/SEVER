@@ -10,7 +10,6 @@ public class DungeonCoreOperation : MonoBehaviour
 
     private DungeonCore m_currentCore;        //今の当たっているコア
 
-
     public void DestroyDungeonCore()
     {
         if (m_currentCore == null) return;
@@ -24,7 +23,6 @@ public class DungeonCoreOperation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         DungeonCore core = collision.GetComponent<DungeonCore>();
 
         if (core != null)
@@ -35,7 +33,6 @@ public class DungeonCoreOperation : MonoBehaviour
 
             m_gameUI.Show(m_currentCore.Message, GameUI.TextType.PlayerAction);
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -50,13 +47,10 @@ public class DungeonCoreOperation : MonoBehaviour
 
             m_gameUI.Hide(GameUI.TextType.PlayerAction);
         }
-
     }
-
 
     private IEnumerator MessageWindowDisplay()
     {
-
         yield return new WaitForSeconds(0.5f);
 
         m_fade.Fade(m_messageWindow, 0f, 0.8f, 0.5f);      //メッセージウィンドウを表示
@@ -66,7 +60,5 @@ public class DungeonCoreOperation : MonoBehaviour
 
         m_fade.Fade(m_messageWindow, 0.8f, 0f, 0.5f);    //メッセージウィンドウを非表示
         m_gameUI.HideUI(GameUI.TextType.MessageWindow);  //メッセージを非表示
-
-
     }
 }

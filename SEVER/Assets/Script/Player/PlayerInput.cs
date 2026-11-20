@@ -11,7 +11,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-
     [SerializeField] InputAction m_cutThread;               //糸を切るための入力
     [SerializeField] InputAction m_doorOperation;           //ドアの操作を行うための入力
     [SerializeField] InputAction m_signboardOperation;      //看板の操作を行うための入力
@@ -28,9 +27,7 @@ public class PlayerInput : MonoBehaviour
     //プレイヤーを動かすための入力を取得する
     public void OnMove(InputAction.CallbackContext context)
     {
-
         m_input = context.ReadValue<Vector2>();
-
     }
 
     private void OnEnable()
@@ -48,5 +45,4 @@ public class PlayerInput : MonoBehaviour
         m_signboardOperation.Disable();
         m_dungeonCoreOperation.Disable();
     }
-
 }

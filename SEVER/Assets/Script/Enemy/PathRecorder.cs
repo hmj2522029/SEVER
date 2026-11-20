@@ -21,7 +21,6 @@ public class PathRecorder : MonoBehaviour
 
     private void Update()
     {
-
         if (!m_isUpdate) return;
 
         //現在の位置を記録する(何も記録していない場合)
@@ -32,36 +31,29 @@ public class PathRecorder : MonoBehaviour
         }
         else
         {
-
             //前回の位置と現在の位置が一定距離以上離れている場合のみ記録する
             if(Vector2.Distance(m_path[m_path.Count - 1], transform.position) > 1.0f)
             {
                 m_path.Add(transform.position);
             }
-
         }
     }
 
     private void OnDrawGizmos()
     {
-
         if (m_path == null || m_path.Count < 2) return;
 
         Gizmos.color = Color.red;
 
         for (int i = 0; i < m_path.Count - 1; i++)
         {
-
             //敵が追尾した道を線で結ぶ(デバックしやすくするため)
             Gizmos.DrawLine(
                 m_path[i],       //現在のポイント
                 m_path[i + 1]    //次のポイント
             );
-
         }
-
     }
-
 
     public void StartRecording()
     {
@@ -85,5 +77,4 @@ public class PathRecorder : MonoBehaviour
 
         m_path.RemoveAt(index);
     }
-
 }

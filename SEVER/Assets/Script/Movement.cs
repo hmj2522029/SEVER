@@ -11,12 +11,14 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
     private Rigidbody2D m_rb;
     private Vector2 m_move;             //移動量
     private Vector2 m_startPosition;    //開始地点
     private float m_moveDistance;       //指定距離
-    private bool m_distanceMove;        //指定距離での移動かどうか
+    private bool m_isDistanceMove;      //指定距離での移動かどうか
+    private bool m_isCanMoving;         //移動可能かどうか
+
+    public bool IsCanMoving => m_isCanMoving;
 
     private void Awake()
     {
@@ -25,8 +27,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (m_distanceMove)
+        if (m_isDistanceMove)
         {
             float distance =
                 Vector2.Distance(m_startPosition, transform.position);
@@ -45,25 +46,27 @@ public class Movement : MonoBehaviour
     public void Move(Vector2 direction, float speed)
     {
         m_move = direction * speed;
-        m_distanceMove = false;
+        m_isDistanceMove = false;
     }
 
     //入力を指定する用のMove関数
     public void Move(Vector2 direction, float distance, float speed)
     {
-
         m_startPosition = transform.position;
         m_moveDistance = distance;
-        m_distanceMove = true;
+        m_isDistanceMove = true;
 
         m_move = direction * speed;
-
     }
 
     public void Stop()
     {
         m_move = Vector2.zero;
-        m_distanceMove = false;
+        m_isDistanceMove = false;
     }
 
+    public void SetMoveEnabled(bool enabled)
+    {
+        m_isCanMoving = enabled;
+    }
 }

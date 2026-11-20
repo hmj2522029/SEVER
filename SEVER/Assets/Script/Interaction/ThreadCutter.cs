@@ -19,7 +19,6 @@ public class ThreadCutter : MonoBehaviour
 
     private void Update()
     {
-        
         if (m_currentThread != null)
         {
             //糸が切れていないならUI表示
@@ -28,7 +27,6 @@ public class ThreadCutter : MonoBehaviour
                 m_interactionUI.Show(m_currentThread.Message, GameUI.TextType.PlayerAction);
             }
         }
-
     }
 
     public void CutThread()
@@ -44,15 +42,12 @@ public class ThreadCutter : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-
 		ThreadConnection thread = collision.GetComponent<ThreadConnection>();
 
 		//相手にThreadConnectionがあるなら保存
 		if (thread != null )
 		{
-
 			m_currentThread = thread;
-
 		}
 	}
 
@@ -64,11 +59,9 @@ public class ThreadCutter : MonoBehaviour
 		//相手とm_currentThreadが同じならnull
 		if (thread == m_currentThread)
 		{
-
 			m_currentThread = null;
 
             m_interactionUI.Hide(GameUI.TextType.PlayerAction);
         }
-
 	}
 }

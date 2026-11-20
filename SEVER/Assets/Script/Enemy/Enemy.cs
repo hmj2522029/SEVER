@@ -32,12 +32,10 @@ public class Enemy : MonoBehaviour
     private AlertIcon m_alertIcon;      //警告アイコン
 
     public bool IsChasing => m_state == EnemyState.Chase; //追尾状態かどうか(見つかった状態)
-
     public bool IsStopped => m_state == EnemyState.Stopped; //完全停止状態かどうか
 
     private void Awake()
 	{
-
 		m_patrol = GetComponentInChildren<Patrol>();
 		m_vision = GetComponentInChildren<Vision>();
 		m_thread = GetComponentInChildren<ThreadConnection>();
@@ -45,18 +43,14 @@ public class Enemy : MonoBehaviour
 		m_return = GetComponentInChildren<Return>();
         m_movement = GetComponentInChildren<Movement>();
         m_alertIcon = GetComponentInChildren<AlertIcon>();
-
     }
 
 	private void Start()
 	{
-
 		m_patrol.UpdateStart();
 		m_chase.UpdateStop();
 		m_return.UpdateStop();
-
     }
-
 
 	void Update()
     {
@@ -65,7 +59,6 @@ public class Enemy : MonoBehaviour
 
 		foreach (var hit in m_vision.Hits)
 		{
-
             //プレイヤー以外のコライダーは無視する
             if (hit.collider == null || !hit.collider.CompareTag("Player"))
 				continue;
@@ -101,7 +94,6 @@ public class Enemy : MonoBehaviour
                     m_alertIcon.ShowLost();   //はてなアイコンを表示する
                 }
 
-
 				break;
 			case EnemyState.Return:
                 UpdateVision(m_return.Dir);
@@ -114,7 +106,6 @@ public class Enemy : MonoBehaviour
                     m_alertIcon.ShowAlert();            //警告アイコンを表示する
                 }
 
-
                 //元の位置に戻り終えた場合、巡回状態に切り替える
                 if (m_return.IsReturnEnd)
 				{
@@ -122,10 +113,8 @@ public class Enemy : MonoBehaviour
                     m_alertIcon.Hide();     //アイコンを非表示にする
                 }
 
-
 				break;
             case EnemyState.Stopped:
-
                 m_movement.Stop();
 
 				return;
@@ -143,7 +132,6 @@ public class Enemy : MonoBehaviour
 
         //次の状態の設定
         m_patrol.UpdateStart();
-
     }
 
 	private void ChangeStateToChase(Transform target)
@@ -161,7 +149,6 @@ public class Enemy : MonoBehaviour
         //追尾した道の記録を開始する(戻るために必要)
         m_return.StartRecording();
 	}
-
 
 	private void ChangeStateToReturn()
 	{
@@ -197,7 +184,6 @@ public class Enemy : MonoBehaviour
         m_patrol.UpdateStop();
     }
 
-
     private void OnEnable()
 	{
 		m_thread.OnThreadBroken += OnThreadBroken;
@@ -207,6 +193,4 @@ public class Enemy : MonoBehaviour
 	{
 		m_thread.OnThreadBroken -= OnThreadBroken;
 	}
-
-
 }

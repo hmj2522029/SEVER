@@ -13,7 +13,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
-
     private ThreadCutter m_threadCutter;                    //糸を切るスクリプト
     private DoorOperation m_doorOperation;                  //ドアの操作を行うスクリプト
     private SignboardOperation m_signboardOperation;        //看板の操作を行うスクリプト
@@ -25,7 +24,6 @@ public class PlayerInteraction : MonoBehaviour
         m_doorOperation = GetComponentInChildren<DoorOperation>();
         m_signboardOperation = GetComponentInChildren<SignboardOperation>();
         m_dungeonCoreOperation = GetComponentInChildren<DungeonCoreOperation>();
-
     }
 
     public void DoorInteract()

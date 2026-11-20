@@ -16,7 +16,6 @@ public class DoorOperation : MonoBehaviour
 
     private DoorBase m_currentDoor;        //今の当たっているドア
 
-
     public void ToggleDoor()
     {
         if (m_currentDoor == null) return;
@@ -26,12 +25,10 @@ public class DoorOperation : MonoBehaviour
 
         //状態に対する表示するメッセージの更新
         m_gameUI.Show(m_currentDoor.Message, GameUI.TextType.PlayerAction);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
 		DoorBase door = collision.GetComponent<DoorBase>();
 
         if (door != null)
@@ -40,7 +37,6 @@ public class DoorOperation : MonoBehaviour
 
             m_gameUI.Show(m_currentDoor.Message, GameUI.TextType.PlayerAction);
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -55,8 +51,5 @@ public class DoorOperation : MonoBehaviour
 
             m_gameUI.Hide(GameUI.TextType.PlayerAction);
         }
-
     }
-
-
 }

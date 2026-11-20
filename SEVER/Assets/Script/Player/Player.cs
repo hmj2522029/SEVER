@@ -27,27 +27,23 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-
         m_movement = GetComponent<Movement>();
         m_playerInput = GetComponent<PlayerInput>();
         m_playerAnimation = GetComponent<PlayerAnimation>();
         m_playerInteraction = GetComponent<PlayerInteraction>();
         m_vision = GetComponentInChildren<Vision>();
         m_playerCapture = GetComponentInChildren<PlayerCapture>();
-
     }
 
     private void Start()
     {
-
         m_playerAnimation.ChangeOfDirection(m_direction);
-
+        m_movement.SetMoveEnabled(true);
     }
 
     private void Update()
     {
-
-        if(m_playerCapture.IsCaptured)
+        if(m_playerCapture.IsCaptured || !m_movement.IsCanMoving)
         {
             m_movement.Stop();
 
@@ -86,8 +82,6 @@ public class Player : MonoBehaviour
         {
             m_playerInteraction.DungeonCoreInteract();
         }
-
-
     }
 
     public void Respawn(Vector2 position)
@@ -99,6 +93,4 @@ public class Player : MonoBehaviour
     {
         m_playerAnimation.ChangeOfDirection(direction);
     }
-
-
 }

@@ -2014,6 +2014,7 @@ MonoBehaviour:
   m_stageExitDoor: {fileID: 1588459614}
   m_playerCapture: {fileID: 1623896863}
   m_randomSpawner: {fileID: 1191030631}
+  m_movementPlayer: {fileID: 869190908}
 --- !u!4 &443009476
 Transform:
   m_ObjectHideFlags: 0

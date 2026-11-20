@@ -28,7 +28,6 @@ public class GameUI : MonoBehaviour
         HideUI      //UI自体を非表示にする
     }
 
-
     [System.Serializable]
     public class UIText
     {
@@ -62,7 +61,6 @@ public class GameUI : MonoBehaviour
     {
         foreach (var uiText in m_textList)
         {
-
             switch (uiText.typeHide)
             {
                 case InitialState.Hide:
@@ -72,9 +70,7 @@ public class GameUI : MonoBehaviour
                 case InitialState.HideUI:
                     uiText.text.gameObject.SetActive(false);
                     break;
-
             }
-
         }
     }
 
@@ -85,7 +81,6 @@ public class GameUI : MonoBehaviour
         {
             uiText.text = message;
         }
-
     }
     public void ShowUI(TextType type)
     {
@@ -94,7 +89,6 @@ public class GameUI : MonoBehaviour
         {
             uiText.gameObject.SetActive(true);
         }
-
     }
 
 
@@ -105,7 +99,6 @@ public class GameUI : MonoBehaviour
         {
             uiText.text = "";
         }
-
     }
     public void HideUI(TextType type)
     {
@@ -114,6 +107,5 @@ public class GameUI : MonoBehaviour
         {
             uiText.gameObject.SetActive(false);
         }
-
     }
 }

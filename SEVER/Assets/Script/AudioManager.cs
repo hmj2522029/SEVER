@@ -10,7 +10,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource m_bgmSource;  // BGM用(一つしか鳴らせない(鳴らしたいならもう一個用意する))
     [SerializeField] int m_poolSize = 10;      // 3D効果音用のAudioSourceのプールサイズ
 
-
     private List<AudioSource> m_seSource3D = new List<AudioSource>();
 
     void Awake()
@@ -90,7 +89,6 @@ public class AudioManager : MonoBehaviour
         source.rolloffMode = AudioRolloffMode.Logarithmic;  // 音の減衰方法を設定
 
         source.Play();
-
     }
 
     public void PlayBGM(AudioClip clip)
@@ -101,5 +99,4 @@ public class AudioManager : MonoBehaviour
         m_bgmSource.loop = true;
         m_bgmSource.Play();
     }
-
 }

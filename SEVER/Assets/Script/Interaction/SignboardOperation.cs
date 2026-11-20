@@ -13,13 +13,11 @@ using UnityEngine;
 
 public class SignboardOperation : MonoBehaviour
 {
-
     [SerializeField] GameUI m_gameUI;               //UI
     [SerializeField] CanvasGroupFade m_fade;        //フェード
     [SerializeField] CanvasGroup m_messageWindow;   //枠
 
     private Signboard m_currentSignboard;   //今の当たっている看板
-
 
     public void Toggle()
     {
@@ -30,7 +28,6 @@ public class SignboardOperation : MonoBehaviour
         
         //状態に対する表示するメッセージの更新
         m_gameUI.Show(m_currentSignboard.Message, GameUI.TextType.PlayerAction);
-
 
         //看板の内容を表示・非表示にする
         if (m_currentSignboard.IsRead)
@@ -45,13 +42,10 @@ public class SignboardOperation : MonoBehaviour
 
             m_fade.Fade(m_messageWindow, 0.8f, 0f, 0.5f);   //フェードアウト
         }
-
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         Signboard signboard = collision.GetComponent<Signboard>();
 
         if (signboard != null)
@@ -60,7 +54,6 @@ public class SignboardOperation : MonoBehaviour
 
             m_gameUI.Show(m_currentSignboard.Message, GameUI.TextType.PlayerAction);
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -75,15 +68,12 @@ public class SignboardOperation : MonoBehaviour
             m_gameUI.Hide(GameUI.TextType.PlayerAction);
             m_gameUI.Hide(GameUI.TextType.MessageWindow);
 
-
             if (signboard.IsRead)
             {
                 m_fade.Fade(m_messageWindow, 0.8f, 0f, 0.5f);
 
                 signboard.Return();   //看板を読みやめる
             }
-
         }
-
     }
 }

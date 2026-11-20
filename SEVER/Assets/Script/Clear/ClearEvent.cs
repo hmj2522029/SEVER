@@ -14,13 +14,8 @@ public class ClearEvent : GameEvent
     [Header("UI")]
     [SerializeField] GameUI m_gameUI;           //UI
 
-
-    //[Header("音")]
-
-
     public override void Execute()
     {
-
         StartCoroutine(Event());
     }
 
@@ -36,12 +31,10 @@ public class ClearEvent : GameEvent
 
         //プレイヤーが左に移動し、カメラが下に移動する場面
         yield return StartCoroutine(PlayEndingSequence());
-
     }
 
     private IEnumerator PlayDoorOpeningSequence()
     {
-
         //プレイヤーがドアの前まで行き、ドアを開ける場面
 
         m_playerController.Move(Vector2.down, 6f, 2f); //プレイヤーを下に移動させる
@@ -61,7 +54,6 @@ public class ClearEvent : GameEvent
         yield return new WaitForSeconds(0.5f);
 
         m_door.Open(); //ドアを開ける
-
     }
 
     private IEnumerator PlayDoorExitSequence()
@@ -79,12 +71,10 @@ public class ClearEvent : GameEvent
         m_playerController.StopMove();  //プレイヤーの移動を停止
 
         yield return new WaitForSeconds(0.5f);
-
     }
 
     private IEnumerator PlayEndingSequence()
     {
-
         m_playerController.Move(Vector2.left, 10f, 2f); //プレイヤーを左に移動させる
 
         yield return new WaitForSeconds(6f);
@@ -94,8 +84,5 @@ public class ClearEvent : GameEvent
         yield return new WaitForSeconds(5f);
 
         IsFinished = true; //イベント終了
-
     }
-
-
 }

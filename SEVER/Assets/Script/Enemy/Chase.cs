@@ -12,7 +12,6 @@ using UnityEngine;
 
 public class Chase : MonoBehaviour
 {
-
 	[SerializeField] float m_speed;     //移動速度
 
 	private Transform m_target;         //追尾するオブジェクト
@@ -23,7 +22,6 @@ public class Chase : MonoBehaviour
     public Vector2 Dir => m_dir;
     public float Speed => m_currentSpeed; 
 
-
 	private void Update()
 	{
 		if(m_isUpdate) return;
@@ -33,7 +31,6 @@ public class Chase : MonoBehaviour
 
         //ターゲットの方向を計算
 		m_dir = (m_target.position - transform.position).normalized;
-
     }
 
     private void FixedUpdate()
@@ -43,17 +40,12 @@ public class Chase : MonoBehaviour
         //ターゲットとの距離が1.0以上の場合のみ移動する
         if ((m_target.position - transform.position).magnitude > 1.2)
 		{
-
             m_currentSpeed = m_speed;
-
         }
 		else
 		{
             m_currentSpeed = 0;
         }
-
-
-
     }
 
     public void SetTarget(Transform transform)
@@ -69,5 +61,4 @@ public class Chase : MonoBehaviour
 	{
         m_isUpdate = false;
 	}
-
 }

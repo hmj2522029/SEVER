@@ -10,16 +10,13 @@ using UnityEngine;
 
 public class Torchs : MonoBehaviour
 {
-
     [SerializeField] List<Torch> m_torchList;   //操作するトーチのリスト
 
     public void Ignition()
     {
         foreach (var torch in m_torchList)
         {
-            
             torch.Ignition();
-
         }
     }
 
@@ -27,13 +24,7 @@ public class Torchs : MonoBehaviour
     {
         foreach (var torch in m_torchList)
         {
-
             torch.FireExtinguishing();
-
         }
-
-
     }
-
-
 }

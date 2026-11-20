@@ -31,7 +31,6 @@ public class TitleManager : MonoBehaviour
 
     private void Update()
     {
-        
         if(m_pressAnyButton.WasPressedThisFrame() && m_gameEvent.IsFinished)
         {
             //クリック音を鳴らす
@@ -39,20 +38,16 @@ public class TitleManager : MonoBehaviour
 
             // シーン切り替え
             StartCoroutine(ChangeScene());
-
         }
-
     }
 
     private IEnumerator ChangeScene()
     {
-
         m_fade.FadeIn(m_image, 2f);     //見えなる
 
         yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("StageSelectScene");
-
     }
 
     private void OnEnable()

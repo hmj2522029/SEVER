@@ -29,7 +29,6 @@ public class PlayerAnimation : MonoBehaviour
 	{
 		m_anime = GetComponent<Animator>();
         m_bounceAnimation = GetComponentInChildren<BounceAnimation>();
-
 	}
 
 	void Update()
@@ -40,7 +39,6 @@ public class PlayerAnimation : MonoBehaviour
         //一定時間入力が続いたら、最後の入力方向をIdle方向として確定
         if (m_time >= m_updateTime && m_awaitingUpdate == true && m_isInput == true)
 		{
-
 			//Idleアニメーションにするために入力状態を保存
 			m_anime.SetFloat("LastMoveX", m_previousDirection.x);
 			m_anime.SetFloat("LastMoveY", m_previousDirection.y);
@@ -49,7 +47,6 @@ public class PlayerAnimation : MonoBehaviour
 
 			m_awaitingUpdate = false;
 		}
-
 	}
 
     //dirは視野などによって徐々に変化する実際の向きに使用し、
@@ -74,17 +71,14 @@ public class PlayerAnimation : MonoBehaviour
         //Input Systemの入力開始・終了時に発生する方向のブレを防ぐ
         if (inputDirection != m_previousDirection && m_isInput == true)
         {
-
             m_awaitingUpdate = true;
 
             //過去の方向を保持
             m_time = 0;
             m_previousDirection = inputDirection;
-
         }
 
         m_isInput = true;
-
     }
 
     public void BounceAnimation()

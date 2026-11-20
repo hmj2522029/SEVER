@@ -15,7 +15,6 @@ public class PlayerCapture : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (m_isCaptured) return;
 
         if (collision.CompareTag("Enemy"))
@@ -31,6 +30,4 @@ public class PlayerCapture : MonoBehaviour
             OnCaptured?.Invoke();
         }
     }
-
-
 }

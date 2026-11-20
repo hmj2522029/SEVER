@@ -12,13 +12,11 @@ using UnityEngine;
 
 public class CanvasGroupFade : MonoBehaviour
 {
-
     //フェード中かどうかのフラグ
     private bool m_isFading = false;        //フェード中かどうか
 
     //フェード中かどうかを取得
     public bool GetIsFading() { return m_isFading; }
-
 
     public void FadeIn(CanvasGroup group, float duration)
     {
@@ -35,7 +33,6 @@ public class CanvasGroupFade : MonoBehaviour
         StartCoroutine(FadeUI(group, start, end, duration));
     }
 
-
     public IEnumerator FadeOutCoroutine(CanvasGroup group, float duration)
     {
         yield return FadeUI(group, 1f, 0f, duration);
@@ -47,7 +44,6 @@ public class CanvasGroupFade : MonoBehaviour
 
     private IEnumerator FadeUI(CanvasGroup group, float start, float end, float duration)
     {
-
         float elapsedTime = 0.0f;
         m_isFading = true; //フェード中フラグを立てる
 

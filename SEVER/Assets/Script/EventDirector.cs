@@ -10,11 +10,9 @@ using UnityEngine;
 
 public class EventDirector : MonoBehaviour
 {
-
     //イベントの開始
     public void StartEvent(GameEvent gameEvent)
     {
         gameEvent.Execute();
     }
-
 }

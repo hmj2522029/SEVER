@@ -33,7 +33,6 @@ public class TitleEvent : GameEvent
     [SerializeField] AudioClip m_hitDoor;           //ドアを叩く音
     [SerializeField] AudioClip m_closesSuddenly;    //急に閉まる音
 
-
     public override void Execute()
     {
 
@@ -80,7 +79,6 @@ public class TitleEvent : GameEvent
 
     private IEnumerator LightAppears()
     {
-
         //プレイヤーが暗かったのに急に明るくなりびっくりする場面
 
         m_playerController.Move(Vector2.left, 17.5f, 2.0f); //左に移動(プレイヤー)
@@ -97,12 +95,10 @@ public class TitleEvent : GameEvent
         m_torchs.Ignition();    //トーチを全部点火する
 
         yield return new WaitForSeconds(1.5f);
-         
     }
 
     private IEnumerator FindDoor()
     {
-
         //プレイヤーが扉を見つけて周りを見る場面
 
         m_playerController.ChangeOfDirection(Vector2.up);   //上に向かせる(プレイヤー)
@@ -122,7 +118,6 @@ public class TitleEvent : GameEvent
         m_playerController.ChangeOfDirection(Vector2.right);    //右に向かせる(プレイヤー)
 
         yield return new WaitForSeconds(0.5f);
-
     }
 
     private IEnumerator EnemyEncounter() 
@@ -147,7 +142,6 @@ public class TitleEvent : GameEvent
         m_playerController.Move(Vector2.left, 7.0f, 2.0f);   //左に移動(プレイヤー)
 
         yield return new WaitForSeconds(3.5f);
-
     }
 
     private IEnumerator DiscoverThread()
@@ -175,7 +169,6 @@ public class TitleEvent : GameEvent
         m_playerController.ChangeOfDirection(Vector2.left);     //左に向かせる(プレイヤー)
 
         yield return new WaitForSeconds(0.5f);
-
     }
 
     private IEnumerator CutThread()
@@ -199,8 +192,6 @@ public class TitleEvent : GameEvent
         m_playerController.ChangeOfDirection(Vector2.left); //左に向かせる(プレイヤー)
 
         yield return new WaitForSeconds(0.5f);
-
-
     }
 
     private IEnumerator ApproachEnemy() 
@@ -251,7 +242,6 @@ public class TitleEvent : GameEvent
         m_door.Open();  //ドアを開ける
 
         yield return new WaitForSeconds(0.5f);
-
     }
 
     private IEnumerator GetLockedIn() 
@@ -296,7 +286,6 @@ public class TitleEvent : GameEvent
 
         //ドアを叩く音
         AudioManager.Instance.PlaySE(m_hitDoor);
-
     }
 
     private IEnumerator CameraReveal() 

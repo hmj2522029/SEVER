@@ -30,16 +30,13 @@ public class ThreadConnection : MonoBehaviour
     private string m_message = "「E」 切る";        //プレイヤーのアクション表示用のテキスト
 
     public string Message => m_message;
-
     public bool IsBroken => m_isBroken;
     public IReadOnlyList<Vector3> Points => m_threadPoints;
     public int SegmentCount => m_segmentCount;
 
     private void Awake()
 	{
-
 		m_edgeCollider = GetComponent<EdgeCollider2D>();
-
 	}
 
 
@@ -49,12 +46,10 @@ public class ThreadConnection : MonoBehaviour
 
 		UpdateLine();
         UpdateCollider();
-
 	}
 
 	private void UpdateLine()
 	{
-
         //糸の長さを計算
 		float distance = Vector3.Distance(transform.position, m_core.position);
 
@@ -65,13 +60,11 @@ public class ThreadConnection : MonoBehaviour
             m_maxSegmentCount   //最大分割数
         );
 
-
         //必要な場合にのみ配列を作成
         if (m_threadPoints == null || m_threadPoints.Length != m_segmentCount)
         {
             m_threadPoints = new Vector3[m_segmentCount];
         }
-
 
         //糸の位置を更新
         for (int i = 0; i < m_segmentCount; i++)
@@ -86,26 +79,21 @@ public class ThreadConnection : MonoBehaviour
             );
 
             m_threadPoints[i] = pos;
-            
         }
     }
 
 	private void UpdateCollider()
 	{
-
         //EdgeColliderはローカル座標で設定するため変換
         m_points[0] = Vector2.zero;
         m_points[1] = transform.InverseTransformPoint(m_core.position);
 
         //当たり判定を糸の位置に合わせて更新
         m_edgeCollider.points = m_points;
-
     }
-
 
 	public void Break()
 	{
-
 		if(m_isBroken) return;
 
 		m_edgeCollider.enabled = false;
@@ -115,9 +103,5 @@ public class ThreadConnection : MonoBehaviour
         AudioManager.Instance.PlaySE(m_cut);
 
         OnThreadBroken?.Invoke();
-
 	}
-
-
-
 }

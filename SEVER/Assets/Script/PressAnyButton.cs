@@ -14,7 +14,6 @@ public class PressAnyButton : MonoBehaviour
     [SerializeField] float m_blinkSpeed = 2.0f;     //点滅速度     
 
     private TextMeshProUGUI m_image;   //点滅させる画像
-
     private float m_timer;
 
     private void Awake()
@@ -28,10 +27,8 @@ public class PressAnyButton : MonoBehaviour
         m_timer += Time.deltaTime * m_blinkSpeed;
         float alpha = Mathf.Abs(Mathf.Sin(m_timer));
 
-
         Color color = m_image.color;
         color.a = alpha;
         m_image.color = color;
-
     }
 }

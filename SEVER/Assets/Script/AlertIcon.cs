@@ -14,7 +14,6 @@ using static UnityEngine.UI.Image;
 
 public class AlertIcon : MonoBehaviour
 {
-
     [SerializeField] Sprite m_alertSprite;          // !
     [SerializeField] Sprite m_lostSprite;           // ?
     [SerializeField] Vector3 m_finalCoordinates;    //最終座標
@@ -24,13 +23,11 @@ public class AlertIcon : MonoBehaviour
     private Coroutine m_coroutine;
     private SpriteRenderer m_alertIcon;
 
-
     private void Awake()
     {
         m_alertIcon = GetComponent<SpriteRenderer>();
         m_alertIcon.enabled = false;
     }
-
 
     //「！」を表示
     public void ShowAlert()
@@ -44,7 +41,6 @@ public class AlertIcon : MonoBehaviour
         StartAnimation();
     }
 
-
     //「？」を表示
     public void ShowLost()
     {
@@ -56,7 +52,6 @@ public class AlertIcon : MonoBehaviour
 
         StartAnimation();
     }
-
 
     //非表示
     public void Hide()
@@ -96,7 +91,6 @@ public class AlertIcon : MonoBehaviour
         }
 
         elapsed = 0f;
-
         //上から最終座標に移動する
         while (elapsed < duration)
         {

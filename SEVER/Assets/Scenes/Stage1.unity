@@ -25785,6 +25785,7 @@ MonoBehaviour:
   m_stageExitDoor: {fileID: 1425307779}
   m_playerCapture: {fileID: 366427179}
   m_randomSpawner: {fileID: 555636331}
+  m_movementPlayer: {fileID: 1222705367}
 --- !u!4 &1019319465
 Transform:
   m_ObjectHideFlags: 0

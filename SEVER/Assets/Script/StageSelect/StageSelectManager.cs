@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class StageSelectManager : MonoBehaviour
 {
-
-
     [Header("フェード等")]
     [SerializeField] CanvasGroupFade m_fade;        //フェード
     [SerializeField] CanvasGroup m_background;      //画面のフェード用の画像
@@ -15,8 +13,9 @@ public class StageSelectManager : MonoBehaviour
     [Header("ステージ選択ドア")]
     [SerializeField] StageSelectDoor[] m_stageDoors;    
 
-    [Header("プレイヤー")]
+    [Header("プレイヤー")]   
     [SerializeField] Player m_player;
+    [SerializeField] Movement m_movementPlayer; //プレイヤーの移動スクリプト
 
     [Header("UI")]
     [SerializeField] GameUI m_gameUI;  //UI
@@ -30,9 +29,6 @@ public class StageSelectManager : MonoBehaviour
 
         foreach(var door in m_stageDoors)
         {
-
-
-            
             if(door.StageID == GameManager.Instance.CurrentStageID)
             {
                 //ステージに入る前の指定した位置にプレイヤーを移動させる
@@ -48,7 +44,6 @@ public class StageSelectManager : MonoBehaviour
         {
             SceneManager.LoadScene("ClearScene");
         }
-
     }
 
     private void OnEnable()
@@ -71,7 +66,7 @@ public class StageSelectManager : MonoBehaviour
     {
         StageSelectDoor stageDoor = door as StageSelectDoor;
 
-        //StageSelectDoorではない場合
+        //StageSelectDoorではない
         if (stageDoor == null) return;
 
         //入るために必要なステージをクリアしていない場合
@@ -98,7 +93,9 @@ public class StageSelectManager : MonoBehaviour
         //どのステージに入ったかをIDで保存
         GameManager.Instance.SetStage(stageDoor.StageID);
 
-        m_fade.FadeIn(m_background, 3.0f);
+        m_movementPlayer.SetMoveEnabled(false);   //プレイヤーの移動を無効にする
+
+        m_fade.FadeIn(m_background, 2.0f);
 
         StartCoroutine(LoadStage(stageDoor.SceneName));
     }
@@ -112,7 +109,6 @@ public class StageSelectManager : MonoBehaviour
 
     private IEnumerator MessageWindowDisplay()
     {
-
         m_fade.Fade(m_messageWindow, 0f, 0.8f, 0.5f);               //メッセージウィンドウを表示
         m_gameUI.Show(m_message, GameUI.TextType.MessageWindow);    //メッセージを表示
 
@@ -124,7 +120,5 @@ public class StageSelectManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         m_isMessageWindowDisplayed = false;              //メッセージウィンドウが表示されていない状態にする
-
     }
-
 }

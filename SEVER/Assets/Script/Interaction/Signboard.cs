@@ -13,15 +13,12 @@ using UnityEngine;
 
 public class Signboard : MonoBehaviour
 {
-
     [SerializeField] string m_content;  //看板に書いてある内容
 
     private bool m_isRead = false;  //看板を読んでいるか
 
     public string Message => m_isRead ? "「F」 読みやめる" : "「F」 読む";       //表示するメッセージ
-
     public string Content => m_content;
-
     public bool IsRead  => m_isRead;
 
     //看板を読む
@@ -30,7 +27,6 @@ public class Signboard : MonoBehaviour
         if (m_isRead) return;
 
         m_isRead = true;
-
     }
 
     //看板を読みやめて戻る
@@ -39,13 +35,10 @@ public class Signboard : MonoBehaviour
         if (!m_isRead) return;
 
         m_isRead = false;
-
-
     }
 
     public void Toggle()
     {
-
         if (m_isRead)
         {
             Return();
@@ -54,6 +47,5 @@ public class Signboard : MonoBehaviour
         {
             Read();
         }
-
     }
 }
