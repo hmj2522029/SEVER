@@ -47,7 +47,7 @@ public class PlayerEventController : MonoBehaviour
     public void Move(Vector2 direction, float distance, float speed)
     {
         m_input = direction;
-        m_movement.Move(direction, distance, speed);
+        m_movement.Move(direction, distance);
     }
 
     public void StopMove()

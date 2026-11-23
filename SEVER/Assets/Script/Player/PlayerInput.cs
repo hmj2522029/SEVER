@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] InputAction m_doorOperation;           //ドアの操作を行うための入力
     [SerializeField] InputAction m_signboardOperation;      //看板の操作を行うための入力
     [SerializeField] InputAction m_dungeonCoreOperation;    //ダンジョンコアの操作を行うための入力
+    [SerializeField] InputAction m_dashInput;               //ダッシュの入力
 
     private Vector2 m_input;   //プレイヤーを動かすための入力
 
@@ -22,6 +23,7 @@ public class PlayerInput : MonoBehaviour
     public bool DoorOperationDown => m_doorOperation.WasPressedThisFrame();     //インタラクションの入力が押されたかどうか
     public bool SignboardOperationDown => m_signboardOperation.WasPressedThisFrame(); //看板の操作の入力が押されたかどうか
     public bool DungeonCoreOperationDown => m_dungeonCoreOperation.WasPressedThisFrame(); //ダンジョンコアの操作の入力が押されたかどうか
+    public bool DashInputDown => m_dashInput.WasPressedThisFrame();             //ダッシュの入力が押されたかどうか
     public Vector2 Input => m_input;
 
     //プレイヤーを動かすための入力を取得する
@@ -36,6 +38,7 @@ public class PlayerInput : MonoBehaviour
         m_doorOperation.Enable();
         m_signboardOperation.Enable();
         m_dungeonCoreOperation.Enable();
+        m_dashInput.Enable();
     }
 
     private void OnDisable()
@@ -44,5 +47,6 @@ public class PlayerInput : MonoBehaviour
         m_doorOperation.Disable();
         m_signboardOperation.Disable();
         m_dungeonCoreOperation.Disable();
+        m_dashInput.Disable();
     }
 }

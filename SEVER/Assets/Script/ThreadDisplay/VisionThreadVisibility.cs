@@ -15,6 +15,11 @@ public class VisionThreadVisibility : ThreadVisibility
     
     private List<Vector3> m_visiblePoints = new List<Vector3>();  //視野内にある糸の分割点を保存するリスト
 
+    public void SetVision(Vision vision)
+    {
+        m_vision = vision;
+    }
+
     protected override void UpdateVisibility()
     {
         //視野内にある糸の分割点を保存するリストをクリアする

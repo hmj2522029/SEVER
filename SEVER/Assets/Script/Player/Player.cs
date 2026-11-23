@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private PlayerInteraction m_playerInteraction;  //プレイヤーのインタラクション
     private Movement m_movement;                    //プレイヤーの移動
     private PlayerCapture m_playerCapture;          //プレイヤーが捕まったかどうか
+    private Dash m_dash;                            //プレイヤーのダッシュ
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
         m_playerInput = GetComponent<PlayerInput>();
         m_playerAnimation = GetComponent<PlayerAnimation>();
         m_playerInteraction = GetComponent<PlayerInteraction>();
+        m_dash = GetComponent<Dash>();
         m_vision = GetComponentInChildren<Vision>();
         m_playerCapture = GetComponentInChildren<PlayerCapture>();
     }
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
     {
         m_playerAnimation.ChangeOfDirection(m_direction);
         m_movement.SetMoveEnabled(true);
+        m_movement.SetSpeed(m_speed);
     }
 
     private void Update()
@@ -51,7 +54,7 @@ public class Player : MonoBehaviour
         }
 
         //移動
-        m_movement.Move(m_playerInput.Input, m_speed);
+        m_movement.Move(m_playerInput.Input);
 
         //アニメーション
         m_playerAnimation.Animation(m_vision.Dir, m_playerInput.Input);
@@ -81,6 +84,12 @@ public class Player : MonoBehaviour
         if (m_playerInput.DungeonCoreOperationDown)
         {
             m_playerInteraction.DungeonCoreInteract();
+        }
+
+        //ダッシュのインタラクション
+        if (m_playerInput.DashInputDown)
+        {
+            //作成中
         }
     }
 
