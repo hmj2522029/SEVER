@@ -13,11 +13,6 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector3Int, PathNode> m_nodes //セル座標とPathNodeの対応関係を保持する辞書
         = new Dictionary<Vector3Int, PathNode>();  
 
-
-    void Update()
-    {
-    }
-
     void Start()
     {
         //TestAdjacentNode(GameObject.transform.position);
@@ -37,7 +32,14 @@ public class GridManager : MonoBehaviour
         return m_grid.WorldToCell(worldPosition);   
     }
 
-    public bool HasFloor(Vector3Int cellPosition)
+	public Vector3 CellToWorld(Vector3Int cellPosition)
+	{
+		//セル座標をワールド座標に変換
+		return m_grid.GetCellCenterWorld(cellPosition);
+	}
+
+
+	public bool HasFloor(Vector3Int cellPosition)
     {
         //床タイルがあるかどうか
         return m_floorTilemap.HasTile(cellPosition);    

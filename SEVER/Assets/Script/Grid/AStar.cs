@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class AStar : MonoBehaviour
 {
-    //探索候補のノード
-    private List<PathNode> m_openList = new List<PathNode>();
+    private List<PathNode> m_openList = new List<PathNode>();		//探索候補のノード
+    private List<PathNode> m_closedList = new List<PathNode>();		//探索済みのノード
+	private List<PathNode> m_searchedNodes = new List<PathNode>();	//前回で検索したノード
 
-    //探索済みのノード
-    private List<PathNode> m_closedList = new List<PathNode>();
-
-    private GridManager m_gridManager;  
+	private GridManager m_gridManager;  
 
     private void Awake()
     {
         m_gridManager = GetComponent<GridManager>();
     }
-    private PathNode GetLowestFCostNode()
+
+	private PathNode GetLowestFCostNode()
     {
         //OpenListからFCostが最も小さいノードを取得
         
@@ -24,7 +24,8 @@ public class AStar : MonoBehaviour
 
         foreach (PathNode node in m_openList)
         {
-            if (node.FCost < lowestFCostNode.FCost)
+            if (node.FCost < lowestFCostNode.FCost ||
+				(node.FCost == lowestFCostNode.FCost && node.HCost < lowestFCostNode.HCost))
             {
                 lowestFCostNode = node;
             }
@@ -102,17 +103,23 @@ public class AStar : MonoBehaviour
             adjacentNode.HCost = GetDistanceCost(adjacentNode, goalNode);
             adjacentNode.Parent = currentNode;
             m_openList.Add(adjacentNode);
+			m_searchedNodes.Add(adjacentNode);
         }
     }
 
     public List<PathNode> FindPath(PathNode startNode, PathNode goalNode)
     {
-        //経路を格納するリスト
-        List<PathNode> pathNodes = new List<PathNode>();
-
-        //初期化
-        m_openList.Clear();
+		//初期化
+		InitializationSearchedNodes();
+		m_openList.Clear();
         m_closedList.Clear();
+
+		//スタートまたはゴールが無いか通行不可能な場合
+		if (startNode == null || goalNode == null ||
+			!startNode.IsWalkable || !goalNode.IsWalkable)
+		{
+			return new List<PathNode>();
+		}
 
         //初回の探索候補を設定
         FirstSearchCandidate(startNode, goalNode);
@@ -123,10 +130,8 @@ public class AStar : MonoBehaviour
             //FCostが最も小さいノードを取得
             PathNode smallestFCost = GetLowestFCostNode();
 
-            pathNodes.Add(smallestFCost);
-
-            //ゴールノードに到達した場合はループを終了
-            if (smallestFCost == goalNode) break;
+            //ゴールノードに到達した場合は実際の経路を返す
+            if (smallestFCost == goalNode) return RetracePath(goalNode); 
 
             //探索済みリストに移動
             MoveToClosedList(smallestFCost);
@@ -141,7 +146,8 @@ public class AStar : MonoBehaviour
             }
         }
 
-        return pathNodes;
+		//ゴールに達成出来なかった
+		return new List<PathNode>();
     }
 
     public List<PathNode> RetracePath(PathNode goalNode)
@@ -152,13 +158,14 @@ public class AStar : MonoBehaviour
         PathNode currentNode = goalNode;
 
         //ゴールノードからスタートノードまで親ノードを辿って経路を作成
-        while (currentNode != null)
+        while (currentNode != null && currentNode.Parent != null)
         {
             pathNodes.Add(currentNode);
             currentNode = currentNode.Parent;
         }
 
-        return pathNodes;
+		pathNodes.Reverse();
+		return pathNodes;
     }
 
     private void FirstSearchCandidate (PathNode startNode, PathNode goalNode)
@@ -168,5 +175,18 @@ public class AStar : MonoBehaviour
         startNode.HCost = GetDistanceCost(startNode, goalNode);
         startNode.Parent = null;
         m_openList.Add(startNode);
-    }
+		m_searchedNodes.Add(startNode);
+	}
+
+	private void InitializationSearchedNodes()
+	{
+		foreach(PathNode node in m_searchedNodes)
+		{
+			node.GCost = int.MaxValue;
+			node.HCost = int.MaxValue;
+			node.Parent = null;
+		}
+
+		m_searchedNodes.Clear();
+	}
 }

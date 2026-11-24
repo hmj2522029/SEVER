@@ -8,7 +8,7 @@ public class PathNode
     public bool IsWalkable { get; }      //通行可能かどうか
 
     public int GCost { get; set; }  //スタート地点からの実際に通った経路のコスト
-    public int HCost { get; set; }  //ゴールまでの残りの推定コスト
+    public int HCost { get; set; }  //ゴールまでの残りの推定コスト(ゴールに向かっているのかを判断するためのコスト)
 
     public int FCost => GCost + HCost;  //総コスト
 
