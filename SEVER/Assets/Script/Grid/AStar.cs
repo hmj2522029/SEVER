@@ -150,7 +150,7 @@ public class AStar : MonoBehaviour
 		return new List<PathNode>();
     }
 
-    public List<PathNode> RetracePath(PathNode goalNode)
+    private List<PathNode> RetracePath(PathNode goalNode)
     {
         //経路を格納するリスト
         List<PathNode> pathNodes = new List<PathNode>();

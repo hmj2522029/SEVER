@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
 		{
 			case EnemyState.Patrol:
 				UpdateVision(m_patrol.Dir);
-                m_movement.Move(m_patrol.Dir, m_patrol.Speed);
+                Move(m_patrol.Dir, m_patrol.Speed);
 
                 //プレイヤーを見つけた場合、追尾状態に切り替える
                 if (foundPlayer)
@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
 				break;
 			case EnemyState.Chase:
 				UpdateVision(m_chase.Dir);
-                m_movement.Move(m_chase.Dir, m_chase.Speed);
+                Move(m_chase.Dir, m_chase.Speed);
 
                 //プレイヤーを見失った場合、元の位置に戻る状態に切り替える
                 if (!foundPlayer)
@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour
 				break;
 			case EnemyState.Return:
                 UpdateVision(m_return.Dir);
-                m_movement.Move(m_return.Dir, m_return.Speed);
+                Move(m_return.Dir, m_return.Speed);
 
                 //戻るときにプレイヤーを見つけた場合、追尾状態に切り替える
                 if (foundPlayer)
@@ -119,7 +119,6 @@ public class Enemy : MonoBehaviour
 
 				return;
 		}
-
 	}
 
 	private void ChangeStateToPatrol()
@@ -165,6 +164,12 @@ public class Enemy : MonoBehaviour
     private void UpdateVision(Vector2 dir)
 	{
 		m_vision.SetDirection(dir);
+	}
+
+	private void Move(Vector2 dir, float speed)
+	{
+		m_movement.SetSpeed(speed);
+		m_movement.Move(dir);
 	}
 
 	private void OnThreadBroken()
